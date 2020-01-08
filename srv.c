@@ -35,7 +35,6 @@ struct htmlReq {
 };
 
 int main() {
-      // int PORT = rand() % 50 + 2001;
       struct sockaddr_in server; // structura folosita de server
       struct sockaddr_in from;
       int sd; //descriptorul de socket 
@@ -75,7 +74,7 @@ int main() {
             int client;
             int length = sizeof(from);
 
-            printf("[server]Asteptam la portul %d...\n", PORT);
+            printf("The server is on at 127.0.0.1:%d...\n", PORT);
             fflush(stdout);
 
             /* acceptam un client (stare blocanta pina la realizarea conexiunii) */
@@ -144,14 +143,11 @@ int main() {
             } else {
                   strcat(path, request.url);
             }
-            printf("\n\n\n\n THIS IS THE PATH %s \n\n\n\n", path);
-
             /*Get extension */
             char * ext;
             char url[100];
             strcpy(url, request.url);
             strtok_r(url, ".", & ext);
-            printf("\n\nExtension: %s\n\n", ext);
             /*
                   Selectam headerul pe baza extensiei
             */
@@ -174,7 +170,6 @@ int main() {
                         /*
                         altfel trimitem html pentru eroare 
                         */ 
-                        printf("Send a 404\n");
                         char err[] = "HTTP/1.1 404 Not Found:\r\n"
                         "Content-Type: text/html; charset=UTF-8\r\n\r\n";
                         write(client, err, sizeof(err));
@@ -196,11 +191,9 @@ int main() {
                         ch = fgetc(file);
                   }
                   fclose(file);
-                  printf("\n\n %s \n\n", text);
                   write(client, text, sizeof(text));
             } else {
                   // file doesn't exist
-                  printf("Send 404 file \n");
                   strcpy(page, "<!DOCTYPE html><html><head><title>404 Not Found</title>"
                         "<body><h1>404 Not Found</h1>"
                         "<a href=\"/\"> Home</a> "
