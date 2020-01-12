@@ -1,9 +1,3 @@
-/* servTCPIt.c - Exemplu de server TCP iterativ
-   Asteapta un nume de la clienti; intoarce clientului sirul
-   "Hello nume".
-   
-   Autor: Lenuta Alboaie  <adria@infoiasi.ro> (c)2009
-*/
 
 #include <sys/types.h>
 
